@@ -110,7 +110,7 @@ for k in range(0,n):
     # Given a column of the matrix there are 3 possibilities:
     # a) This column is in my area of responsibility -> Find pivoting row, compute active columns -> send columns to "next" processors
     # b) This column is in a previous processor's responsibility -> Receive new pivot, compute active columns -> send columns to "next" processors
-    # c) This coulmn is in a next processor's responsibility -> Exit 
+    # c) This column is in a next processor's responsibility -> Exit 
 
     if k in column_mapping[myrank]: # a) This column is in my area of responsibility
 
