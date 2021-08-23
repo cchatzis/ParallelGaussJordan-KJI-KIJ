@@ -6,7 +6,7 @@ Python scripts that implement the (parallel and serial) KIJ and KJI Gauss Jordan
 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is a neat way to solve linear systems of equations. Typically, it goes like this:
 
-```
+```python
 # Solving Ax=b using Gaussian elimination with partial pivoting
 # Input: A: n x n matrix, b: vector of n dimensions
 # Output: x: vector of n dimensions
@@ -53,6 +53,22 @@ for i=n-1:1 do:
 ```
 
 This algorithm has complexity of ![O(n^3)](https://latex.codecogs.com/gif.latex?O%28n%5E3%29). However, execution time may be reduced by using parallelization.
+
+## Gauss and Gauss-Jordan elimination
+The result of the Gauss elimination is a matrix in upper diagonal form. In each step the bottom-right part of the matrix is updated. If we replace the `# Update bottom-right part of matrix` step with the following:
+
+```
+    # Update right part of matrix
+
+    for i=1:n, i != k:
+
+        m = A[i][k]/A[k][k]
+
+        for j=1:n+1 do:
+            Afull[i][j] = A[i][j] - m*Afull[k][j]
+```
+
+we end up with **Gauss-Jordan elimination**. Notice that we now update all of the rows, not just those rows "under" the active the pivot. The result of Gauss-Jordan elimination is a matrix in diagonal form.
 
 ## KJI and KIJ methods
 
